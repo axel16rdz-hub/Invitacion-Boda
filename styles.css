@@ -7,14 +7,22 @@ body {
 #carta {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#carta video {
-  width: 100vw;
-  height: 100vh;
+/* CONTENEDOR DEL VIDEO */
+#videoCarta {
+  max-width: 100vw;
+  max-height: 100vh;
+
+  aspect-ratio: 9 / 16; /* CARTA VERTICAL */
+  width: auto;
+  height: 100%;
+
   object-fit: contain;
-  background-color: white;
 }
 
 /* INVITACIÓN */
