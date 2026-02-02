@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* CARTA */
+#carta {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f0ea;
+}
+
+.carta-contenido {
+  text-align: center;
+}
+
+.carta-contenido button {
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* INVITACIÓN */
+.imagen-contenedor {
+  position: relative;
+  width: 100%;
+}
+
+.imagen-contenedor img {
+  width: 100%;
+  display: block;
+}
+
+/* BOTÓN INVISIBLE */
+.btn-ubicacion {
+  position: absolute;
+
+  /* 👇 ESTO ES LO QUE AJUSTAMOS */
+  top: 60%;      /* baja o sube */
+  left: 20%;     /* mueve a los lados */
+  width: 60%;    /* ancho del área clickeable */
+  height: 4%;    /* alto del botón */
+
+  cursor: pointer;
+}
