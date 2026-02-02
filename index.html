@@ -3,59 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación de Boda</title>
-
-  <style>
-    body {
-      margin: 0;
-      background: #f8f5f2;
-      display: flex;
-      justify-content: center;
-      font-family: sans-serif;
-    }
-
-    .contenedor {
-      width: 100%;
-      max-width: 900px;
-      padding: 10px;
-      text-align: center;
-    }
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .boton {
-      display: inline-block;
-      margin: 15px 0;
-      padding: 12px 20px;
-      background: #c49a6c;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-  </style>
+  <title>Invitación</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <div class="contenedor">
 
-    <!-- INVITACIÓN -->
-    <img src="invitacion.svg" alt="Invitación de boda">
-
-    <!-- UBICACIÓN -->
-    <a class="boton"
-       href="https://maps.app.goo.gl/R2xFXqG9b2dsccbaA"
-       target="_blank">
-      📍 Ver ubicación
-    </a>
-
-    <!-- SPOTIFY -->
-    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4MjDJD8cW7iVeWInc2Bdyj?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-
+  <!-- CARTA -->
+  <div id="carta">
+    <div class="carta-contenido">
+      <h1>Tenemos algo especial para ti</h1>
+      <button onclick="abrirInvitacion()">Abrir invitación</button>
+    </div>
   </div>
+
+  <!-- INVITACIÓN -->
+  <div id="invitacion" style="display:none">
+    <div class="imagen-contenedor">
+
+      <img src="invitacion.png" alt="Invitación">
+
+      <!-- BOTÓN INVISIBLE: VER UBICACIÓN -->
+      <a href="https://www.google.com/maps"
+         class="btn-ubicacion"
+         target="_blank"
+         aria-label="Ver ubicación"></a>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
