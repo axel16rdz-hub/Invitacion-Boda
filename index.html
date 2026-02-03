@@ -6,9 +6,6 @@
   <title>Invitación</title>
 
   <style>
-    /* =========================
-       RESET
-    ========================= */
     body {
       margin: 0;
       overflow-x: hidden;
@@ -66,11 +63,11 @@
     }
 
     /* =========================
-       BOTONES (VISIBLES PARA AJUSTE)
+       BOTONES UBICACIÓN (AJUSTE)
     ========================= */
     .btn-ubicacion {
       position: absolute;
-      background: rgba(255, 0, 0, 0.4);
+      background: rgba(255, 0, 0, 0.35);
       border: 2px dashed red;
       cursor: pointer;
     }
@@ -90,25 +87,25 @@
     }
 
     /* =========================
-       CONTADOR
+       CONTADOR (CORRECTO)
     ========================= */
     #contador {
       position: absolute;
-      top: 35%; /* AJUSTA SEGÚN TU DISEÑO */
-      left: 50%;
-      transform: translateX(-50%);
+      top: 38%;          /* ajusta solo este valor */
+      left: 0;
+      width: 100%;
       display: flex;
-      gap: 12px;
+      justify-content: space-evenly;
+      pointer-events: none;
     }
 
-    .numero {
-      min-width: 60px;
-      padding: 10px 14px;
-      background: #fff;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 1.6rem;
+    #contador span {
+      font-size: clamp(40px, 8vw, 90px);
       font-weight: bold;
+      color: #000;
+      line-height: 1;
+      text-align: center;
+      width: 25%;
     }
   </style>
 </head>
@@ -130,22 +127,20 @@
 
       <!-- CONTADOR -->
       <div id="contador">
-        <div class="numero"><span id="dias">00</span></div>
-        <div class="numero"><span id="horas">00</span></div>
-        <div class="numero"><span id="minutos">00</span></div>
+        <span id="dias">00</span>
+        <span id="horas">00</span>
+        <span id="minutos">00</span>
       </div>
 
       <!-- BOTÓN UBICACIÓN 1 -->
       <a href="https://maps.app.goo.gl/L3Au6aKSALD3kp5i7"
          target="_blank"
-         class="btn-ubicacion btn-ubicacion-1"
-         aria-label="Ver ubicación 1"></a>
+         class="btn-ubicacion btn-ubicacion-1"></a>
 
       <!-- BOTÓN UBICACIÓN 2 -->
       <a href="https://maps.app.goo.gl/KDXyNGjm1b6S59qH7"
          target="_blank"
-         class="btn-ubicacion btn-ubicacion-2"
-         aria-label="Ver ubicación 2"></a>
+         class="btn-ubicacion btn-ubicacion-2"></a>
 
     </div>
   </div>
@@ -161,9 +156,6 @@
       video.pause();
     });
 
-    /* =========================
-       CONTADOR LOGICA
-    ========================= */
     const diasEl = document.getElementById("dias");
     const horasEl = document.getElementById("horas");
     const minutosEl = document.getElementById("minutos");
@@ -174,14 +166,9 @@
       const ahora = new Date();
       let diff = fechaEvento - ahora;
 
-      if (diff <= 0) {
-        diasEl.textContent = "00";
-        horasEl.textContent = "00";
-        minutosEl.textContent = "00";
-        return;
-      }
+      if (diff <= 0) diff = 0;
 
-      const totalMin = Math.floor(diff / 1000 / 60);
+      const totalMin = Math.floor(diff / 60000);
       const totalHoras = Math.floor(totalMin / 60);
 
       const dias = Math.floor(totalHoras / 24);
