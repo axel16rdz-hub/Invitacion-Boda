@@ -90,15 +90,14 @@
        CONTADOR RESPONSIVE
     ========================= */
     #contador {
-      position: absolute;
-      top: 17%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      gap: 5vw; /* separación adaptativa */
-      pointer-events: none;
-    }
+  position: absolute;
+  top: 17.4%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: clamp(20px, 5vw, 44px); /* mínimo 20px, adaptativo según pantalla, máximo 44px */
+  pointer-events: none;
+}
 
     #contador span {
       font-size: clamp(50px, 10vw, 120px);
