@@ -70,12 +70,11 @@
     ========================= */
     .btn-ubicacion {
       position: absolute;
-      background: rgba(255, 0, 0, 0.4); /* ROJO VISIBLE */
-      border: 22px dashed red;
+      background: rgba(255, 0, 0, 0.4);
+      border: 2px dashed red;
       cursor: pointer;
     }
 
-    /* UBICACIÓN 1 */
     .btn-ubicacion-1 {
       top: 48%;
       left: 18.8%;
@@ -83,12 +82,33 @@
       height: 4%;
     }
 
-    /* UBICACIÓN 2 */
     .btn-ubicacion-2 {
       top: 68%;
       left: 18.8%;
       width: 60%;
       height: 4%;
+    }
+
+    /* =========================
+       CONTADOR
+    ========================= */
+    #contador {
+      position: absolute;
+      top: 35%; /* AJUSTA SEGÚN TU DISEÑO */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+    }
+
+    .numero {
+      min-width: 60px;
+      padding: 10px 14px;
+      background: #fff;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -107,6 +127,13 @@
     <div class="imagen-contenedor">
 
       <img src="invitacion.png" alt="Invitación">
+
+      <!-- CONTADOR -->
+      <div id="contador">
+        <div class="numero"><span id="dias">00</span></div>
+        <div class="numero"><span id="horas">00</span></div>
+        <div class="numero"><span id="minutos">00</span></div>
+      </div>
 
       <!-- BOTÓN UBICACIÓN 1 -->
       <a href="https://maps.app.goo.gl/L3Au6aKSALD3kp5i7"
@@ -128,12 +155,46 @@
     const invitacion = document.getElementById('invitacion');
     const video = document.getElementById('videoCarta');
 
-    // Al tocar la carta → abre invitación
     carta.addEventListener('click', () => {
       carta.style.display = 'none';
       invitacion.style.display = 'block';
       video.pause();
     });
+
+    /* =========================
+       CONTADOR LOGICA
+    ========================= */
+    const diasEl = document.getElementById("dias");
+    const horasEl = document.getElementById("horas");
+    const minutosEl = document.getElementById("minutos");
+
+    const fechaEvento = new Date("2026-03-21T18:00:00-06:00");
+
+    function actualizarContador() {
+      const ahora = new Date();
+      let diff = fechaEvento - ahora;
+
+      if (diff <= 0) {
+        diasEl.textContent = "00";
+        horasEl.textContent = "00";
+        minutosEl.textContent = "00";
+        return;
+      }
+
+      const totalMin = Math.floor(diff / 1000 / 60);
+      const totalHoras = Math.floor(totalMin / 60);
+
+      const dias = Math.floor(totalHoras / 24);
+      const horas = totalHoras % 24;
+      const minutos = totalMin % 60;
+
+      diasEl.textContent = dias.toString().padStart(2, "0");
+      horasEl.textContent = horas.toString().padStart(2, "0");
+      minutosEl.textContent = minutos.toString().padStart(2, "0");
+    }
+
+    actualizarContador();
+    setInterval(actualizarContador, 1000);
   </script>
 
 </body>
