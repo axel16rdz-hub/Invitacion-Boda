@@ -63,15 +63,14 @@
     }
 
     /* =========================
-       BOTONES UBICACIÓN (AJUSTE)
+       BOTONES UBICACIÓN (INVISIBLES)
     ========================= */
     .btn-ubicacion {
-  position: absolute;  
-  background: transparent;
-  border: none;
-  cursor: pointer;
+      position: absolute;  
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
-  
 
     .btn-ubicacion-1 {
       top: 48%;
@@ -88,16 +87,16 @@
     }
 
     /* =========================
-       CONTADOR (CORRECTO)
+       CONTADOR
     ========================= */
     #contador {
-  position: absolute;
-  top: 17.4%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 44px;        /* 👈 controla la separación */
-  pointer-events: none;
+      position: absolute;
+      top: 17.4%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 44px;
+      pointer-events: none;
     }
 
     #contador span {
@@ -146,17 +145,44 @@
     </div>
   </div>
 
+  <!-- =========================
+       AUDIO
+  ========================= -->
+  <audio id="musica" loop>
+    <source src="música.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     const carta = document.getElementById('carta');
     const invitacion = document.getElementById('invitacion');
     const video = document.getElementById('videoCarta');
 
+    // =========================
+    // REPRODUCIR INVITACIÓN Y MÚSICA CON FADE IN
     carta.addEventListener('click', () => {
       carta.style.display = 'none';
       invitacion.style.display = 'block';
       video.pause();
+
+      const musica = document.getElementById('musica');
+      musica.currentTime = 100; // inicia en 1:40
+      musica.volume = 0;         // empieza silenciosa
+      musica.play().catch(err => console.log("No se pudo reproducir:", err));
+
+      // fade in rápido (aprox 2 segundos)
+      let volumen = 0;
+      const fadeInterval = setInterval(() => {
+        volumen += 0.02;
+        if(volumen >= 1){
+          volumen = 1;
+          clearInterval(fadeInterval);
+        }
+        musica.volume = volumen;
+      }, 40); // cada 40ms sube un poquito
     });
 
+    // =========================
+    // CONTADOR
     const diasEl = document.getElementById("dias");
     const horasEl = document.getElementById("horas");
     const minutosEl = document.getElementById("minutos");
