@@ -66,7 +66,7 @@
        BOTONES UBICACIÓN (INVISIBLES)
     ========================= */
     .btn-ubicacion {
-      position: absolute;  
+      position: absolute;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -87,25 +87,26 @@
     }
 
     /* =========================
-       CONTADOR
+       CONTADOR RESPONSIVE
     ========================= */
     #contador {
       position: absolute;
-      top: 17.4%;
+      top: 17%;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 44px;
+      justify-content: center;
+      gap: 5vw; /* separación adaptativa */
       pointer-events: none;
     }
 
     #contador span {
-      font-size: clamp(50px, 10vw, 113px);
+      font-size: clamp(50px, 10vw, 120px);
       font-weight: bold;
       color: #000;
       line-height: 1;
       text-align: center;
-      width: 25%;
+      min-width: 50px;
     }
   </style>
 </head>
@@ -133,7 +134,7 @@
       </div>
 
       <!-- BOTÓN UBICACIÓN 1 -->
-      <a href="https://maps.app.goo.gl/Hkm7U6M79eE3ZUNa6"
+      <a href="https://maps.app.goo.gl/L3Au6aKSALD3kp5i7"
          target="_blank"
          class="btn-ubicacion btn-ubicacion-1"></a>
 
@@ -145,11 +146,9 @@
     </div>
   </div>
 
-  <!-- =========================
-       AUDIO
-  ========================= -->
+  <!-- AUDIO -->
   <audio id="musica" loop>
-    <source src="musica.mp3" type="audio/mpeg">
+    <source src="música.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -169,7 +168,7 @@
       musica.volume = 0;         // empieza silenciosa
       musica.play().catch(err => console.log("No se pudo reproducir:", err));
 
-      // fade in rápido (aprox 2 segundos)
+      // fade in rápido (~2 segundos)
       let volumen = 0;
       const fadeInterval = setInterval(() => {
         volumen += 0.02;
